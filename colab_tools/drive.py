@@ -2,8 +2,9 @@ def gsheet_by_key(key):
   from google.colab import auth
   auth.authenticate_user()
   import gspread
-  from oauth2client.client import GoogleCredentials
-  gc = gspread.authorize(GoogleCredentials.get_application_default())
+  from google.auth import default
+  creds, _ = default()
+  gc = gspread.authorize(creds)
   return gc.open_by_key(key)
 
 def df_from_worksheet(worksheet):
